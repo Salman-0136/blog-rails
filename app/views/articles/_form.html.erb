@@ -1,0 +1,48 @@
+<div style="max-width:600px; margin:40px auto; padding:30px; background:#fff; border-radius:12px; box-shadow:0 6px 15px rgba(0,0,0,0.1);">
+
+  <%= form_with model: article, local: true, html: { multipart: true } do |f| %>
+
+    <% if f.object.errors.any? %>
+      <div style="margin-bottom:20px; padding:10px; background-color:#fde2e2; border:1px solid #f5c2c2; border-radius:8px;">
+        <p style="font-weight:bold; color:#b91c1c;">Please fix the following errors:</p>
+        <ul style="margin:5px 0; padding-left:20px; color:#b91c1c;">
+          <% f.object.errors.full_messages.each do |err| %>
+            <li><%= err %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Title -->
+    <div style="margin-bottom:20px;">
+      <%= f.label :title, "Article Title", style: "font-weight:bold; display:block; margin-bottom:5px;" %>
+      <%= f.text_field :title, style: "width:100%; padding:10px 12px; border:1px solid #ccc; border-radius:6px;" %>
+    </div>
+
+    <!-- Description -->
+    <div style="margin-bottom:20px;">
+      <%= f.label :description, "Description", style: "font-weight:bold; display:block; margin-bottom:5px;" %>
+      <%= f.text_area :description, rows:7, style: "width:100%; padding:10px 12px; border:1px solid #ccc; border-radius:6px;" %>
+    </div>
+
+    <!-- Cover Image Upload -->
+    <div style="margin-bottom:30px;">
+      <%= f.label :cover_image, "Upload Cover Image", style: "font-weight:bold; display:block; margin-bottom:5px;" %>
+      <%= f.file_field :cover_image, style: "width:100%; padding:6px; border:1px solid #ccc; border-radius:6px;" %>
+
+      <% if article.cover_image.attached? %>
+        <div style="margin-top:10px;">
+          <p style="font-size:12px; font-weight:bold; margin-bottom:5px;">Current Image Preview:</p>
+          <%= image_tag url_for(article.cover_image.variant(resize_to_limit: [300, 200])), style: "max-width:300px; max-height:200px; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.1);" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Submit -->
+    <div style="text-align:center;">
+      <%= f.submit article.new_record? ? "Create Article" : "Update Article", style: "background-color:#2563eb; color:#fff; padding:12px 24px; border-radius:8px; font-weight:bold; cursor:pointer; border:none; margin-right:10px;" %>
+      <%= link_to "Cancel", all_articles_path, style: "color:#555; text-decoration:none; font-weight:bold; padding:12px 24px; border-radius:8px; border:1px solid #ccc;" %>
+    </div>
+
+  <% end %>
+</div>

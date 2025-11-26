@@ -18,6 +18,11 @@ gem "stimulus-rails"
 gem "jbuilder"
 # Gemfile
 gem 'tailwindcss-rails'
+# Gemfile
+gem 'tailwindcss-rails'
+
+# Gemfile
+gem "image_processing", "~> 1.2"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
