@@ -8,18 +8,11 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> feature/article
+  
   root "pages#home"
   get "about", to: "pages#about", as: :about
   get "contact", to: "pages#contact", as: :contact
 
-<<<<<<< HEAD
-=======
   get "articles", to: "articles#index", as: :all_articles
   get "articles/new", to: "articles#new", as: :new_article
   post "articles", to: "articles#create"
@@ -29,8 +22,6 @@ Rails.application.routes.draw do
   delete "articles/:id", to: "articles#destroy"
   post "articles/:id/publish", to: "articles#publish", as: :publish_article
 
->>>>>>> Stashed changes
->>>>>>> feature/article
   # Defines the root path route ("/")
   # root "posts#index"
 end
