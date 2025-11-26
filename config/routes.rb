@@ -9,6 +9,22 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+<<<<<<< Updated upstream
+=======
+  root "pages#home"
+  get "about", to: "pages#about", as: :about
+  get "contact", to: "pages#contact", as: :contact
+
+  get "articles", to: "articles#index", as: :all_articles
+  get "articles/new", to: "articles#new", as: :new_article
+  post "articles", to: "articles#create"
+  get "articles/:id", to: "articles#show", as: :article
+  get "articles/:id/edit", to: "articles#edit", as: :edit_article
+  patch "articles/:id", to: "articles#update"
+  delete "articles/:id", to: "articles#destroy"
+  post "articles/:id/publish", to: "articles#publish", as: :publish_article
+
+>>>>>>> Stashed changes
   # Defines the root path route ("/")
   # root "posts#index"
 end

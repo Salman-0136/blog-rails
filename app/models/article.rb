@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+  has_one_attached :cover_image
   validates :title, presence: true, length: { minimum: 6, maximum: 150 }
   validates :description, presence: true, length: { minimum: 10 }
   validates :status, inclusion: { in: %w[draft published] }

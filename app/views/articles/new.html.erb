@@ -1,0 +1,14 @@
+<main class="min-h-screen bg-gray-50 py-12 px-4">
+	<div class="max-w-3xl mx-auto">
+		<h1 class="text-4xl font-extrabold text-gray-900 mb-2">✏️ Create New Article</h1>
+		<p class="text-gray-600 mb-8">Share your thoughts and ideas with the world</p>
+
+		<div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+			<%= render 'form', article: @article %>
+
+			<div class="mt-8 flex justify-end border-t border-gray-200 pt-6">
+				<%= link_to '← Back to Articles', all_articles_path, class: 'px-8 py-3 text-lg bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition font-semibold' %>
+			</div>
+		</div>
+	</div>
+</main>

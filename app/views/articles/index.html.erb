@@ -1,0 +1,55 @@
+<main class="min-h-screen bg-gray-50 py-12 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-12">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900">Articles</h1>
+        <p class="text-gray-600 mt-2">Discover all our published and draft articles</p>
+      </div>
+      <%= link_to "➕ New Article", new_article_path, class: "bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition font-semibold" %>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% @articles.each do |article| %>
+      <article class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300" style="background-color: #fff; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.07);">
+        <% if article.cover_image.attached? %>
+        <%= image_tag url_for(article.cover_image), class: "w-full h-48 object-cover" %>
+        <% else %>
+        <div class="h-48 flex items-center justify-center bg-gray-100">
+          <span>No image</span>
+        </div>
+        <% end %>
+
+        <div style="padding: 1.5rem;">
+          <div class="flex items-start justify-between mb-3">
+            <h2 class="text-xl font-bold text-gray-900 flex-1"><%= link_to article.title, article_path(article), class: "hover:text-indigo-600 transition" %></h2>
+            <% if article.status == 'published' %>
+            <span class="text-xs bg-green-100 text-green-800 px-3 py-1 rounded-full font-semibold ml-2">Published</span>
+            <% else %>
+            <span class="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-semibold ml-2">Draft</span>
+            <% end %>
+          </div>
+
+          <p class="text-sm text-gray-600 mb-6 line-clamp-3"><%= truncate(strip_tags(article.description), length: 150) %></p>
+
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+            <div class="text-xs text-gray-500">
+              <span class="font-medium"><%= time_ago_in_words(article.created_at) %></span> ago
+            </div>
+            <div class="flex items-center gap-2">
+              <%= link_to 'View', article_path(article), class: 'text-sm bg-indigo-50 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-100 transition font-medium' %>
+              <%= link_to 'Edit', edit_article_path(article), class: 'text-sm bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition font-medium' %>
+            </div>
+          </div>
+        </div>
+      </article>
+      <% end %>
+    </div>
+
+    <% if @articles.empty? %>
+    <div class="text-center py-16">
+      <p class="text-gray-600 text-lg mb-4">No articles found.</p>
+      <%= link_to "Create your first article", new_article_path, class: "text-indigo-600 hover:underline font-semibold" %>
+    </div>
+    <% end %>
+  </div>
+</main>

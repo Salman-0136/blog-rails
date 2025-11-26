@@ -16,6 +16,15 @@ gem "turbo-rails"
 gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
+<<<<<<< Updated upstream
+=======
+# Gemfile
+gem 'tailwindcss-rails'
+
+# Gemfile
+gem "image_processing", "~> 1.2"
+
+>>>>>>> Stashed changes
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
